@@ -1,0 +1,21 @@
+name: Check Python Types
+
+on: [pull_request]
+
+jobs:
+  build:
+    name: Type Check
+    runs-on: ubuntu-18.04
+    steps:
+      - name: clone-repo
+        uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: install-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7.5'
+      - name: install-requirements
+        run: python -m pip install -r requirements-dev.txt
+      - name: style-check
+        run: bash check-types.sh
