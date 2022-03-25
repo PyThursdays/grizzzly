@@ -10,5 +10,3 @@ class CLI:
     def hello(self, name: Optional[str] = None):
         name = name or "world"
         print(f"Hello, {name}!")
-
-

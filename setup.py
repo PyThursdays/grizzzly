@@ -12,4 +12,3 @@ setup(
         "bin/grizzzly"
     ]
 )
-
