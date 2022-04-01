@@ -1,5 +1,6 @@
-from .cli import CLI
 
+def start_cli():
+    import fire
+    from .cli import CLI
 
-def get_cli():
-    return CLI()
+    return fire.Fire(CLI())
