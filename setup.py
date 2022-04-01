@@ -1,4 +1,4 @@
-from setuptools import setupa, find_namespace_packages
+from setuptools import setup, find_namespace_packages
 
 
 with open("README.md", "r") as file:
