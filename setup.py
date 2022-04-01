@@ -1,7 +1,7 @@
 from setuptools import setupa, find_namespace_packages
 
 
-with open("READEM.md", "r") as file:
+with open("README.md", "r") as file:
     readme = file.read()
 
 
