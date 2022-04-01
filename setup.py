@@ -10,7 +10,7 @@ with open("requirements.txt", "r") as file:
 
 setup(
     name="grizzzly",
-    version="0.1.3",
+    version="0.1.4",
     description="This is your favorite data sharing library! Works great with pandas.",
     long_description=readme,
     long_description_content_type="text/markdown",
@@ -21,7 +21,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "grizzzly=grizzzly:get_cli"
+            "grizzzly=grizzzly:start_cli"
         ]
     },
     scripts=[
