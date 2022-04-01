@@ -15,9 +15,7 @@ setup(
     long_description=readme,
     long_description_content_type="text/markdown",
     packages=find_namespace_packages(where="src"),
-    install_requires=[
-        install_requirements
-    ],
+    install_requires=install_requirements,
     package_dir={
         "": "src"
     },
