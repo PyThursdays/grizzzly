@@ -4,6 +4,9 @@ from setuptools import setup, find_namespace_packages
 with open("README.md", "r") as file:
     readme = file.read()
 
+with open("requirements.txt", "r") as file:
+    install_requirements = file.read().splitlines()
+
 
 setup(
     name="grizzzly",
@@ -12,6 +15,7 @@ setup(
     long_description=readme,
     long_description_content_type="text/markdown",
     packages=find_namespace_packages(where="src"),
+    install_requires=install_requirements,
     package_dir={
         "": "src"
     },
