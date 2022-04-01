@@ -1,4 +1,4 @@
-from setuptools import setup, find_namespace_packages
+from setuptools import setup, find_packages
 
 
 with open("README.md", "r") as file:
@@ -10,14 +10,19 @@ with open("requirements.txt", "r") as file:
 
 setup(
     name="grizzzly",
-    version="0.1.2",
+    version="0.1.3",
     description="This is your favorite data sharing library! Works great with pandas.",
     long_description=readme,
     long_description_content_type="text/markdown",
-    packages=find_namespace_packages(where="src"),
+    packages=find_packages(where="src"),
     install_requires=install_requirements,
     package_dir={
         "": "src"
+    },
+    entry_points={
+        "console_scripts": [
+            "grizzzly=grizzzly:get_cli"
+        ]
     },
     scripts=[
         "bin/grizzzly"
