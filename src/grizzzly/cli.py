@@ -1,4 +1,3 @@
-import logging
 import time
 import logging
 from typing import Optional

@@ -3,8 +3,6 @@ import os
 
 from typing import Dict, Optional
 
-from logging.config import dictConfig
-
 
 GZ_FLASK_HOST = os.environ.get(
     "GZ_FLASK_HOST",
@@ -24,7 +22,7 @@ GZ_LOG_LEVEL = os.environ.get(
 )
 
 
-def get_logger(name:str, logger_config_dict: Optional[Dict]):
+def get_logger(name: str, logger_config_dict: Optional[Dict] = None):
     default_logger_config = {
         'version': 1,
         'disable_existing_loggers': False,
@@ -55,5 +53,5 @@ def get_logger(name:str, logger_config_dict: Optional[Dict]):
         }
     }
     config = logger_config_dict or default_logger_config
-    dictConfig(config)
+    logging.config.dictConfig(config)
     return logging.getLogger(name)
