@@ -3,7 +3,7 @@ import logging
 from typing import Optional
 
 
-from .settings import (
+from grizzzly.settings import (
     GZ_FLASK_HOST,
     GZ_FLASK_PORT,
 )
