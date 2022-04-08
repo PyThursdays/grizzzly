@@ -1,5 +1,5 @@
 import time
-import logging
+from grizzzly.settings import get_logger
 from typing import Optional
 
 
@@ -8,7 +8,8 @@ from grizzzly.settings import (
     GZ_FLASK_PORT,
 )
 
-logger = logging.getLogger(__name__)
+
+logger = get_logger(__name__)
 
 
 class CLIServer:
@@ -52,4 +53,7 @@ class CLI:
 
     def hello(self, name: Optional[str] = None):
         name = name or "world"
+        logger.info("This is an info log!")
+        logger.warning("This is a warning log!")
+        logger.error("This is an error log!")
         print(f"Hello, {name}!")
