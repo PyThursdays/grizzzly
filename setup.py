@@ -10,7 +10,7 @@ with open("requirements.txt", "r") as file:
 
 setup(
     name="grizzzly",
-    version="0.1.4",
+    version="0.3.0",
     description="This is your favorite data sharing library! Works great with pandas.",
     long_description=readme,
     long_description_content_type="text/markdown",
