@@ -27,20 +27,20 @@ def get_logger(name: str, logger_config_dict: Optional[Dict] = None):
     default_logger_config = {
         'version': 1,
         'disable_existing_loggers': True,
-        'formatters': { 
-            'standard': { 
+        'formatters': {
+            'standard': {
                 'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
             },
         },
-        'handlers': { 
-            'default': { 
+        'handlers': {
+            'default': {
                 'level': 'INFO',
                 'formatter': 'standard',
                 'class': 'logging.StreamHandler',
                 'stream': 'ext://sys.stdout',
             },
         },
-        'loggers': { 
+        'loggers': {
             '': {
                 'handlers': ['default'],
                 'level': GZ_LOG_LEVEL,
@@ -51,7 +51,7 @@ def get_logger(name: str, logger_config_dict: Optional[Dict] = None):
                 'level': GZ_LOG_LEVEL,
                 'propagate': True
             },
-        } 
+        }
     }
     config = logger_config_dict or default_logger_config
     dictConfig(config)
