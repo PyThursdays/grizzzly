@@ -1,6 +1,7 @@
 import logging
 import os
 
+from logging.config import dictConfig
 from typing import Dict, Optional
 
 
@@ -18,7 +19,7 @@ GZ_FLASK_PORT = os.environ.get(
 
 GZ_LOG_LEVEL = os.environ.get(
     'GZ_LOG_LEVEL',
-    'INFO'
+    default='INFO'
 )
 
 
@@ -42,16 +43,11 @@ def get_logger(name: str, logger_config_dict: Optional[Dict] = None):
                 '': {
                     'handlers': ['default'],
                     'level': GZ_LOG_LEVEL,
-                    'propagate': True
-                },
-                '__main__': {
-                    'handlers': ['default'],
-                    'level': GZ_LOG_LEVEL,
-                    'propagate': True
+                    'propagate': False
                 }
             }
         }
     }
     config = logger_config_dict or default_logger_config
-    logging.config.dictConfig(config)
+    dictConfig(config)
     return logging.getLogger(name)

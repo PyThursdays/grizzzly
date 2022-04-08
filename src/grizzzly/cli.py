@@ -1,15 +1,15 @@
 import time
-import logging
+from grizzzly.settings import get_logger
 from typing import Optional
 
-logger = logging.getLogger(__name__)
 
 from grizzzly.settings import (
     GZ_FLASK_HOST,
     GZ_FLASK_PORT,
 )
 
-logger = logging.getLogger(__name__)
+
+logger = get_logger(__name__)
 
 
 class CLIServer:
