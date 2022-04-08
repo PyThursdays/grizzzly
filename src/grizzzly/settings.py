@@ -3,7 +3,7 @@ import os
 
 from typing import Dict, Optional
 
-from loggging.config import dictConfig
+from logging.config import dictConfig
 
 
 GZ_FLASK_HOST = os.environ.get(
@@ -18,7 +18,7 @@ GZ_FLASK_PORT = os.environ.get(
 )
 
 
-GZ_LOG_LEVEL = os.environment.get(
+GZ_LOG_LEVEL = os.environ.get(
     'GZ_LOG_LEVEL',
     'INFO'
 )
@@ -31,7 +31,7 @@ def get_logger(name:str, logger_config_dict: Optional[Dict]):
         'formatters': {
             'standard': {
                 'format': '%(asctime)s [%(levelname)] %(name)s: %(message)s'
-            }
+            },
             'handlers': {
                 'default': {
                     'level': 'INFO',
@@ -42,6 +42,11 @@ def get_logger(name:str, logger_config_dict: Optional[Dict]):
             },
             'loggers': {
                 '': {
+                    'handlers': ['default'],
+                    'level': GZ_LOG_LEVEL,
+                    'propagate': True
+                },
+                '__main__': {
                     'handlers': ['default'],
                     'level': GZ_LOG_LEVEL,
                     'propagate': True
