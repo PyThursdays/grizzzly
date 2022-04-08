@@ -26,27 +26,32 @@ GZ_LOG_LEVEL = os.environ.get(
 def get_logger(name: str, logger_config_dict: Optional[Dict] = None):
     default_logger_config = {
         'version': 1,
-        'disable_existing_loggers': False,
-        'formatters': {
-            'standard': {
-                'format': '%(asctime)s [%(levelname)] %(name)s: %(message)s'
+        'disable_existing_loggers': True,
+        'formatters': { 
+            'standard': { 
+                'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
             },
-            'handlers': {
-                'default': {
-                    'level': 'INFO',
-                    'formatter': 'standard',
-                    'class': logging.StreamHandler,
-                    'stream': 'ext://sys.stdout'
-                }
+        },
+        'handlers': { 
+            'default': { 
+                'level': 'INFO',
+                'formatter': 'standard',
+                'class': 'logging.StreamHandler',
+                'stream': 'ext://sys.stdout',
             },
-            'loggers': {
-                '': {
-                    'handlers': ['default'],
-                    'level': GZ_LOG_LEVEL,
-                    'propagate': False
-                }
-            }
-        }
+        },
+        'loggers': { 
+            '': {
+                'handlers': ['default'],
+                'level': GZ_LOG_LEVEL,
+                'propagate': True
+            },
+            '__main__': {
+                'handlers': ['default'],
+                'level': GZ_LOG_LEVEL,
+                'propagate': True
+            },
+        } 
     }
     config = logger_config_dict or default_logger_config
     dictConfig(config)
