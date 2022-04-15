@@ -3,6 +3,7 @@ import requests
 from typing import Optional
 
 import pandas as pd
+import numpy as np
 
 from grizzzly.settings import (
     get_logger,
@@ -10,18 +11,32 @@ from grizzzly.settings import (
 )
 
 def upload_dataset(
-    dataset_name: str,
+    name: str,
     df: pd.DataFrame,
-    batch_size: Optional[int] = 1000
+    author: Optional[str] = None,
+    batch_size: Optional[int] = 1000,
 ):
-    json_data = json.loads(df.to_json(orient="records"))
-    for index in range(0, len(json_data), batch_size):
+    # Call the create endpoint
+    response = requests.get(GZ_ENDPOINT_ALIAS["create-dataset"] + f"?name={name}")
+    if not response.ok:
+        raise ValueError("Error when calling the create-dataset endpoint")
+
+
+    records = len(df)
+    batches = {}
+    for index in range(0, records, batch_size):
         upper_index = (
             (index + batch_size)
-            if (index + batch_size) <= len(json_data)
-            else len(json_data)
+            if (index + batch_size) <= records
+            else records
         )
-        response = requests.post(
+        chunk = df[index: upper_index]
+        batches[index] = requests.post(
             GZ_ENDPOINT_ALIAS["upload-dataset"],
-            data={"batch_data": str(json_data[index:upper_index])}
-        )
+            json={
+                "name": name,
+                "author": author,
+                "chunk": chunk.to_dict(orient="records")
+            }
+        ).ok
+    return batches
