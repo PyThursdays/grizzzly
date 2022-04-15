@@ -22,4 +22,4 @@ def upload_dataset(
             if (index + batch_size) <= len(json_parsed)
             else len(json_parsed)
         )
-        response = requests.post(url, data=str(json_data[index:upper_index]))
+        response = requests.post(url, data={"payload": str(json_data[index:upper_index])})

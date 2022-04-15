@@ -9,8 +9,8 @@ api_upload = Blueprint(
 )
 
 
-@api_upload.route("/", methods=["GET", "POST"])
+@api_upload.route("/", methods=["GET", "POST"]) # Remove GET when we stop browser testing
 def upload():
     params = request.args.to_dict()
     payload = params.get("payload")
-    return f"Upload endpoint works great! {payload}"
+    return f"Payload received: {payload}"
