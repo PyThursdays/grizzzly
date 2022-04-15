@@ -20,7 +20,6 @@ GZ_FLASK_HOST = os.environ.get(
     default="127.0.0.1",
 )
 
-
 GZ_FLASK_PORT = os.environ.get(
     "GZ_FLASK_PORT",
     default="9999",
@@ -44,7 +43,6 @@ GZ_API_DEFAULT_DOWNLOAD_DATASET = os.environ.get(
     "GZ_API_DEFAULT_DOWNLOAD_DATASET",
     default="https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv"
 )
-
 
 GZ_LOG_LEVEL = os.environ.get(
     'GZ_LOG_LEVEL',
