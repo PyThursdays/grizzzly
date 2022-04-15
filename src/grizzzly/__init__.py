@@ -1,3 +1,5 @@
+from grizzzly.client.download import download_dataset
+
 
 def start_cli():
     import fire
