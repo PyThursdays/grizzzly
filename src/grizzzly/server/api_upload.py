@@ -1,5 +1,6 @@
 import os
 
+import pandas as pd
 from flask import Blueprint, request
 
 from grizzzly.settings import GZ_BASEPATH, get_logger
@@ -38,8 +39,8 @@ def create():
 
 
 
-@api_upload.route("/", methods=["GET", "POST"]) # Remove GET when we stop browser testing
+@api_upload.route("/chunk", methods=["POST"]) # Remove GET when we stop browser testing
 def upload():
     payload = request.get_json()
-    batch_data = params.get("batch_data")
-    return f"Payload received: {batch_data}"
+    chunk = pd.DataFrame(payload.get("chunk"))
+    return "ok"
