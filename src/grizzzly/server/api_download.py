@@ -17,5 +17,5 @@ api_download = Blueprint(
 def download():
     # TODO: This is currently just a mockup
     df = pd.read_csv(GZ_API_DEFAULT_DOWNLOAD_DATASET)
-    payload = list( df.T.to_dict().values())
+    payload = list(df.T.to_dict().values())
     return jsonify(payload)
