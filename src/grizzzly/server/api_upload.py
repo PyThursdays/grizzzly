@@ -1,4 +1,5 @@
 import os
+import uuid
 
 import pandas as pd
 from flask import Blueprint, request
@@ -30,7 +31,7 @@ def create():
     author = params.get("author", "generic")  # Generic public author
     if not name or not author:
         return "Missing name parameter", 400
-    relative_output_path = os.path.join(author, name)
+    relative_output_path = os.path.join(author)
     absolute_output_path = os.path.join(
         GZ_BASEPATH,
         relative_output_path
@@ -44,9 +45,22 @@ def create():
 @api_upload.route("/chunk", methods=["POST"]) # Remove GET when we stop browser testing
 def upload():
     payload = request.get_json()
-    chunk_df = pd.DataFrame(payload.get("chunk"))
+    dataset_name = payload.get("name") or "default"
+    dataset_author = payload.get("author") or "generic"
+    dataset_id = str(uuid.uuid5(
+        uuid.NAMESPACE_OID,
+        f"{dataset_author}-{dataset_name}"
+    ))
+    print(dataset_name, dataset_author, dataset_id)
+    chunk_df = pd.DataFrame(payload.get("chunk", []))
     chunk_df.to_parquet(
-        path=GZ_DATASET_STORAGE_PATH,
+        path=os.path.join(
+            GZ_DATASET_STORAGE_PATH,
+            dataset_author,
+            dataset_name,
+            dataset_id
+        ),
+        partition_cols=["gz_chunk_part"],
         compression="snappy",
         engine="fastparquet"
     )
