@@ -5,7 +5,7 @@ import pandas as pd
 
 from grizzzly.settings import (
     get_logger,
-    GZ_ENDPOINT_ALIAS
+    GZ_ENDPOINT_ALIAS,
 )
 
 
