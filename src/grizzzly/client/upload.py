@@ -10,6 +10,7 @@ from grizzzly.settings import (
     GZ_ENDPOINT_ALIAS
 )
 
+
 def upload_dataset(
     name: str,
     df: pd.DataFrame,
@@ -20,7 +21,6 @@ def upload_dataset(
     response = requests.get(GZ_ENDPOINT_ALIAS["create-dataset"] + f"?name={name}")
     if not response.ok:
         raise ValueError("Error when calling the create-dataset endpoint")
-
 
     records = len(df)
     batches = {}

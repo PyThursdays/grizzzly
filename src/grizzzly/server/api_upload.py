@@ -42,7 +42,7 @@ def create():
     return "ok!"
 
 
-@api_upload.route("/chunk", methods=["POST"]) # Remove GET when we stop browser testing
+@api_upload.route("/chunk", methods=["POST"])
 def upload():
     payload = request.get_json()
     dataset_name = payload.get("name") or "default"
