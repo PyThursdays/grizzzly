@@ -3,3 +3,4 @@ Flask==2.1.1
 waitress==2.1.1
 pandas>=1.4.0,<2.0.0
 requests>=2.21.0,<2.30.0
+fastparquet==0.8.1
