@@ -4,6 +4,21 @@ This document contains a changelog of the relevant `grizzzly` releases.
 
 --
 
+## 0.4.0 - Grizzzly download endpoint (mockup) and client
+
+* Issue: #39
+* Version: `0.4.0`
+* Feature Scope: `Minor`
+* Date: `2022-04-15`
+
+## Description
+
+This is a simple feature that adds:
+* A first mockup of the download endpoint (backend).
+* The `download_dataset` function client.
+
+--
+
 ## 0.2.0 - Grizzzly backend scaffold
 
 * Issue: #33
