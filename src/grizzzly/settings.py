@@ -1,9 +1,12 @@
 import logging
+import posixpath
 import os
 
 from logging.config import dictConfig
 from typing import Dict, Optional
 
+
+# Backend
 
 GZ_FLASK_HOST = os.environ.get(
     "GZ_FLASK_HOST",
@@ -14,6 +17,23 @@ GZ_FLASK_HOST = os.environ.get(
 GZ_FLASK_PORT = os.environ.get(
     "GZ_FLASK_PORT",
     default="9999",
+)
+
+GZ_FLASK_SSL = os.environ.get(
+    "GZ_FLASK_SSL",
+    default="false",
+).lower().startswith("t")
+
+GZ_API_URL = f"http{'s' if GZ_FLASK_SSL else ''}://{GZ_FLASK_HOST}:{GZ_FLASK_PORT}"
+
+GZ_ENDPOINT_ALIAS = {
+    "hello": posixpath.join(GZ_API_URL, "hello"),
+    "download-dataset": posixpath.join(GZ_API_URL, "download"),
+}
+
+GZ_API_DEFAULT_DOWNLOAD_DATASET = os.environ.get(
+    "GZ_API_DEFAULT_DOWNLOAD_DATASET",
+    default="https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv"
 )
 
 
