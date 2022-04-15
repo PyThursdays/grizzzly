@@ -6,7 +6,14 @@ from logging.config import dictConfig
 from typing import Dict, Optional
 
 
+GZ_BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
 # Backend
+
+GZ_DATASET_STORAGE_PATH = os.environ.get(
+    "GZ_DATASET_STORAGE_PATH",
+    default=GZ_BASEPATH,
+)
 
 GZ_FLASK_HOST = os.environ.get(
     "GZ_FLASK_HOST",
