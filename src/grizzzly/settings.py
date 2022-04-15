@@ -29,6 +29,7 @@ GZ_API_URL = f"http{'s' if GZ_FLASK_SSL else ''}://{GZ_FLASK_HOST}:{GZ_FLASK_POR
 GZ_ENDPOINT_ALIAS = {
     "hello": posixpath.join(GZ_API_URL, "hello"),
     "download-dataset": posixpath.join(GZ_API_URL, "download"),
+    "upload-dataset": posixpath.join(GZ_API_URL, "upload")
 }
 
 GZ_API_DEFAULT_DOWNLOAD_DATASET = os.environ.get(

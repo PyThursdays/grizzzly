@@ -5,8 +5,8 @@ from typing import Optional
 import pandas as pd
 
 from grizzzly.settings import (
-    GZ_FLASK_HOST,
-    GZ_FLASK_PORT
+    get_logger,
+    GZ_ENDPOINT_ALIAS
 )
 
 def upload_dataset(
@@ -14,12 +14,14 @@ def upload_dataset(
     df: pd.DataFrame,
     batch_size: Optional[int] = 1000
 ):
-    url = f"{GZ_FLASK_HOST}:{GZ_FLASK_PORT}/upload"
     json_data = json.loads(df.to_json(orient="records"))
-    for index in range(0, len(json_parsed), batch_size):
+    for index in range(0, len(json_data), batch_size):
         upper_index = (
             (index + batch_size)
-            if (index + batch_size) <= len(json_parsed)
-            else len(json_parsed)
+            if (index + batch_size) <= len(json_data)
+            else len(json_data)
         )
-        response = requests.post(url, data={"payload": str(json_data[index:upper_index])})
+        response = requests.post(
+            GZ_ENDPOINT_ALIAS["upload-dataset"],
+            data={"batch_data": str(json_data[index:upper_index])}
+        )
