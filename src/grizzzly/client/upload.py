@@ -30,7 +30,7 @@ def upload_dataset(
             if (index + batch_size) <= records
             else records
         )
-        chunk = df[index: upper_index]
+        chunk = df[index: upper_index].assign(gz_chunk_part=index)
         batches[index] = requests.post(
             GZ_ENDPOINT_ALIAS["upload-dataset"],
             json={
