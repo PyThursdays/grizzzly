@@ -15,7 +15,7 @@ def upload_dataset(
     name: str,
     df: pd.DataFrame,
     author: Optional[str] = None,
-    batch_size: Optional[int] = 1000,
+    batch_size: int = 1000,
 ):
     # Call the create endpoint
     response = requests.get(GZ_ENDPOINT_ALIAS["create-dataset"] + f"?name={name}")
