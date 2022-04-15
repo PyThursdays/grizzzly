@@ -6,8 +6,6 @@ import pandas as pd
 from grizzzly.settings import (
     get_logger,
     GZ_ENDPOINT_ALIAS,
-    GZ_FLASK_HOST,
-    GZ_FLASK_PORT,
 )
 
 

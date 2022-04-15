@@ -6,13 +6,19 @@ from logging.config import dictConfig
 from typing import Dict, Optional
 
 
+GZ_BASEPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
 # Backend
+
+GZ_DATASET_STORAGE_PATH = os.environ.get(
+    "GZ_DATASET_STORAGE_PATH",
+    default=GZ_BASEPATH,
+)
 
 GZ_FLASK_HOST = os.environ.get(
     "GZ_FLASK_HOST",
     default="127.0.0.1",
 )
-
 
 GZ_FLASK_PORT = os.environ.get(
     "GZ_FLASK_PORT",
@@ -28,14 +34,15 @@ GZ_API_URL = f"http{'s' if GZ_FLASK_SSL else ''}://{GZ_FLASK_HOST}:{GZ_FLASK_POR
 
 GZ_ENDPOINT_ALIAS = {
     "hello": posixpath.join(GZ_API_URL, "hello"),
+    "create-dataset": posixpath.join(GZ_API_URL, "upload", "create"),
     "download-dataset": posixpath.join(GZ_API_URL, "download"),
+    "upload-dataset": posixpath.join(GZ_API_URL, "upload", "chunk")
 }
 
 GZ_API_DEFAULT_DOWNLOAD_DATASET = os.environ.get(
     "GZ_API_DEFAULT_DOWNLOAD_DATASET",
     default="https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv"
 )
-
 
 GZ_LOG_LEVEL = os.environ.get(
     'GZ_LOG_LEVEL',
