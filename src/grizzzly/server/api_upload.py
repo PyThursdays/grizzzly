@@ -3,7 +3,11 @@ import os
 import pandas as pd
 from flask import Blueprint, request
 
-from grizzzly.settings import GZ_BASEPATH, get_logger
+from grizzzly.settings import (
+    GZ_BASEPATH,
+    GZ_DATASET_STORAGE_PATH,
+    get_logger
+)
 
 
 logger = get_logger(__name__)
@@ -37,10 +41,13 @@ def create():
     return "ok!"
 
 
-
-
 @api_upload.route("/chunk", methods=["POST"]) # Remove GET when we stop browser testing
 def upload():
     payload = request.get_json()
-    chunk = pd.DataFrame(payload.get("chunk"))
+    chunk_df = pd.DataFrame(payload.get("chunk"))
+    chunk_df.to_parquet(
+        path=GZ_DATASET_STORAGE_PATH,
+        compression="snappy",
+        engine="fastparquet"
+    )
     return "ok"
