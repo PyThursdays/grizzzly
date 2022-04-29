@@ -1,11 +1,17 @@
 import time
-from grizzzly.settings import get_logger
 from typing import Optional
 
+import pandas as pd
 
+from grizzzly.client import (
+    download_dataset,
+    upload_dataset,
+)
 from grizzzly.settings import (
+    get_logger,
     GZ_FLASK_HOST,
     GZ_FLASK_PORT,
+    GZ_API_DEFAULT_DOWNLOAD_DATASET,
 )
 
 
@@ -57,3 +63,19 @@ class CLI:
         logger.warning("This is a warning log!")
         logger.error("This is an error log!")
         print(f"Hello, {name}!")
+
+    def upload_default(self, name: str, author: str):
+        df = pd.read_csv(GZ_API_DEFAULT_DOWNLOAD_DATASET)
+        upload_dataset(
+            name=name,
+            df=df,
+            author=author,
+        )
+
+    def download(self, name: str, author: str, limit: Optional[int] = None) -> str:
+        df = download_dataset(
+            name=name,
+            author=author
+        )
+        subset = df if limit is None else df.head(limit)
+        return subset.to_string()
