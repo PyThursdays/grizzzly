@@ -12,10 +12,16 @@ from grizzzly.settings import (
 logger = get_logger(__name__)
 
 
-def download_dataset(name: Optional[str] = None) -> pd.DataFrame:
+def download_dataset(author: str, name: str) -> pd.DataFrame:
     if not name:
         logger.warning("Name was not provided; retrieving the default dataset")
-    response = requests.get(GZ_ENDPOINT_ALIAS["download-dataset"])
+    response = requests.get(
+        GZ_ENDPOINT_ALIAS["download-dataset"],
+        params={
+            "author": author,
+            "name": name,
+        }
+    )
     if not response.ok:
         raise ValueError("There was a problem while getting the dataset")
     data = response.json()
