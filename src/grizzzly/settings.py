@@ -36,6 +36,7 @@ GZ_ENDPOINT_ALIAS = {
     "hello": posixpath.join(GZ_API_URL, "hello"),
     "create-dataset": posixpath.join(GZ_API_URL, "upload", "create"),
     "download-dataset": posixpath.join(GZ_API_URL, "download"),
+    "download-dataset-partition": posixpath.join(GZ_API_URL, "download", "part"),
     "upload-dataset": posixpath.join(GZ_API_URL, "upload", "chunk")
 }
 
