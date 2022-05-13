@@ -4,6 +4,19 @@ This document contains a changelog of the relevant `grizzzly` releases.
 
 --
 
+## 0.8.0 - Grizzzly download by partitions
+
+* Issue: #49
+* Version: `0.8.0`
+* Feature Scope: `Minor`
+* Date: `2022-05-13`
+
+### Description
+
+This feature implements a simple "download by chunk" functionality in both the server and client side. 
+
+--
+
 ## 0.7.0 - Grizzzly simple info endpoint implementation
 
 * Issue: #51
