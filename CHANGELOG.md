@@ -4,6 +4,19 @@ This document contains a changelog of the relevant `grizzzly` releases.
 
 --
 
+## 0.7.0 - Grizzzly simple info endpoint implementation
+
+* Issue: #51
+* Version: `0.7.0`
+* Feature Scope: `Minor`
+* Date: `2022-05-13`
+
+### Description
+
+This features implements a very simple "info" endpoint.
+
+--
+
 ## 0.6.0 - Grizzzly download endpoint and client implementation
 
 * Issue: #44
